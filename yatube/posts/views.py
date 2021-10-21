@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.shortcuts import get_object_or_404, redirect, render
 
-from .models import Post, Group
 from .forms import PostForm
-from django.contrib.auth import get_user_model
+from .models import Group, Post
 
 User = get_user_model()
 
@@ -74,6 +74,7 @@ def post_detail(request, post_id):
 @login_required
 def post_create(request):
     form = PostForm(request.POST or None)
+
     if request.method == 'POST':
 
         if form.is_valid():
@@ -81,8 +82,6 @@ def post_create(request):
             post_temp.author = request.user
             post_temp.save()
             return redirect('posts:profile', username=request.user.username)
-
-        return render(request, 'posts/create_post.html', {'form': form})
 
     return render(request, 'posts/create_post.html', {'form': form})
 
@@ -97,11 +96,6 @@ def post_edit(request, post_id):
         if form.is_valid():
             form.save()
             return redirect('/posts/' + str(post_id))
-
-        return render(request, 'posts/create_post.html', {
-            'form': form,
-            'post_id': post_id,
-        })
 
     return render(request, 'posts/create_post.html', {
         'form': form,

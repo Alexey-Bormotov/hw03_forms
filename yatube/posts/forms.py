@@ -1,4 +1,5 @@
 from django import forms
+
 from .models import Post
 
 
@@ -18,7 +19,7 @@ class PostForm(forms.ModelForm):
     def clean_text(self):
         data = self.cleaned_data['text']
 
-        if data == '':
+        if not data:
             raise forms.ValidationError(
                 'Пост не должен быть пустым!',
             )
