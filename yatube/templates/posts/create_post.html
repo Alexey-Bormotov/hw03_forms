@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  {% if is_edit %}
+  {% if form.instance.id %}
     Редактировать запись
   {% else %}
     Добавить запись
@@ -15,7 +15,7 @@
       <div class="col-md-8 p-5">
         <div class="card">
           <div class="card-header">       
-            {% if is_edit %}
+            {% if form.instance.id %}
               Редактировать запись
             {% else %}
               Добавить запись
@@ -27,7 +27,7 @@
 
             <form method="post"
               action="
-                {% if is_edit %}
+                {% if form.instance.id %}
                   {% url 'posts:post_edit' post_id=post_id %}
                 {% else %}
                   {% url 'posts:post_create' %}
@@ -54,7 +54,7 @@
 
               <div class="d-flex justify-content-end">
                 <button type="submit" class="btn btn-primary">
-                  {% if is_edit %}
+                  {% if form.instance.id %}
                     Сохранить
                   {% else %}
                     Добавить
