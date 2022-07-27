@@ -1,3 +1,4 @@
-# backend_community_homework
+# Социальная сеть Yatube
 
-[![CI](https://github.com/yandex-praktikum/hw03_forms/actions/workflows/python-app.yml/badge.svg?branch=master)](https://github.com/yandex-praktikum/hw03_forms/actions/workflows/python-app.yml)
+Промежуточный вариант проекта социальной сети Yatube.  
+Финальный вариант: https://github.com/DIABLik666/hw05_final
